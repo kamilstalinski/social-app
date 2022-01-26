@@ -12,10 +12,10 @@ const SignUpForm = (props) => {
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
 
-    // const [userNameErr, setUserNameErr] = useState({});
-    // const [emailErr, setEmailErr] = useState({});
-    // const [passwordErr, setPasswordErr] = useState({});
-    // const [password2Err, setPassword2Err] = useState({});
+    const [userNameErr, setUserNameErr] = useState({});
+    const [emailErr, setEmailErr] = useState({});
+    const [passwordErr, setPasswordErr] = useState({});
+    const [password2Err, setPassword2Err] = useState({});
 
 
     const handleSubmit = (e) => {
@@ -54,8 +54,10 @@ const SignUpForm = (props) => {
         setEmail('');
         setPassword('');
         setPassword2('')
-    }
+    };
+
     //Form validation
+
     const formValidation = () => {
 
         const userNameErr = {};
@@ -107,8 +109,12 @@ const SignUpForm = (props) => {
             isValid = false;
         }
 
+        setUserNameErr(userNameErr);
+        setEmailErr(emailErr);
+        setPasswordErr(passwordErr);
         return isValid;
     }
+
 
     return (
         <div className="sign-up-form">
@@ -119,6 +125,15 @@ const SignUpForm = (props) => {
                 <input onChange={e => setPassword(e.target.value)} value={password} type="password" id='password' name='password' placeholder="Password" />
                 <input onChange={e => setPassword2(e.target.value)} value={password2} type="password" id='password2' name='password2' placeholder="Confirm Password" />
                 <button type="submit">Sign Up</button>
+                {Object.keys(userNameErr).map((key) => {
+                    return <div className='errors'>*{userNameErr[key]}</div>
+                })}
+                {Object.keys(emailErr).map((key) => {
+                    return <div className='errors'>*{emailErr[key]}</div>
+                })}
+                {Object.keys(passwordErr).map((key) => {
+                    return <div className='errors'>*{passwordErr[key]}</div>
+                })}
             </form>
         </div>
     );

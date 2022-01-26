@@ -4,7 +4,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-    height: 550px;
+    height: 600px;
     background-color: #331222;
     border-radius: 10px;
     box-shadow: 0 3px 15px #000000;
@@ -44,6 +44,7 @@
     width: 200px;
     padding: 20px 30px;
     margin: 0 auto;
+    margin-bottom: 15px;
     font-weight: bold;
     background-color: #000;
     border: none;
@@ -60,4 +61,9 @@
     color: #000;
     border: #949494;
 
+}
+
+.errors {
+    font-size: 14px;
+    color: rgb(202, 0, 0);
 }
