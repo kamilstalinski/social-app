@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios';
 
 import './SignUpForm.css';
@@ -15,10 +16,13 @@ const SignUpForm = (props) => {
     const [userNameErr, setUserNameErr] = useState({});
     const [emailErr, setEmailErr] = useState({});
     const [passwordErr, setPasswordErr] = useState({});
-    const [password2Err, setPassword2Err] = useState({});
 
+    const [visible, setVisible] = useState(false);
+
+    <div className='success'>Registration Completed!</div>
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
         const isValid = formValidation();
 
@@ -37,6 +41,7 @@ const SignUpForm = (props) => {
         };
 
         if (isValid) {
+
             //axios.post
             axios.post(
                 'https://akademia108.pl/api/social-app/user/signup',
@@ -48,12 +53,14 @@ const SignUpForm = (props) => {
                 .catch((err) => {
                     console.log("AXIOS ERROR: ", err);
                 })
+
+            setUserName('');
+            setEmail('');
+            setPassword('');
+            setPassword2('')
+            setVisible(true)
         };
 
-        setUserName('');
-        setEmail('');
-        setPassword('');
-        setPassword2('')
     };
 
     //Form validation
@@ -117,7 +124,9 @@ const SignUpForm = (props) => {
 
 
     return (
+
         <div className="sign-up-form">
+            {visible ? <div className='success'>Registration Completed!</div> : null}
             <h1>Join Our community!</h1>
             <form className='form' onSubmit={handleSubmit}>
                 <input onChange={e => setUserName(e.target.value)} value={userName} type="text" id='username' name='username' placeholder="Username" />

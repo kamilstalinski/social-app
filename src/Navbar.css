@@ -47,7 +47,7 @@
 
 .navbar-section ul a.log-in {
     border: solid #949494 1px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
 }
 
 .navbar-section ul a.log-in  {
