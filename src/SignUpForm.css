@@ -27,9 +27,13 @@
 
 .sign-up-form form input {
     padding: 15px 20px;
-    margin: 10px 0;
+    margin: 15px 0;
     font-size: 16px;
     outline: none;
+}
+
+.sign-up-form form input.red {
+    border: solid 2px red;
 }
 
 .sign-up-form form .form-checkbox {
@@ -70,8 +74,14 @@
     color: rgb(202, 0, 0);
 }
 
-.success {
+.registration-success {
     text-align: center;
     padding-top: 10px;
     color: green;
+}
+
+.registration-failed {
+    text-align: center;
+    padding-top: 10px;
+    color: rgb(202, 0, 0);
 }
