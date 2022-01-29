@@ -5,7 +5,6 @@ import Loader from './Loader';
 
 import './SignUpForm.css';
 
-let message = '';
 
 const SignUpForm = (props) => {
 
@@ -22,6 +21,8 @@ const SignUpForm = (props) => {
     const [registrationFailedVisible, setRegistrationFailedVisible] = useState(false);
     const [loaderVisible, setLoaderVisible] = useState(false);
     const [errors, setErrors] = useState(false);
+    const [message, setMessage] = useState('')
+
 
     const handleSubmit = (e) => {
 
@@ -53,7 +54,8 @@ const SignUpForm = (props) => {
                     let data = res.data;
 
                     if (data.signedup === true) {
-                        setRegistrationSuccessVisible(true)
+                        setRegistrationSuccessVisible(true);
+                        setRegistrationFailedVisible(false);
                         setUserName('');
                         setEmail('');
                         setPassword('');
@@ -61,11 +63,9 @@ const SignUpForm = (props) => {
                     } else {
                         setRegistrationFailedVisible(true)
                         if (data.message.username) {
-                            message = data.message.username;
+                            setMessage(data.message.username);
                         } else if (data.message.email) {
-                            message = data.message.email;
-                        } else if (data.signedup === true) {
-                            setRegistrationFailedVisible(false)
+                            setMessage(data.message.email);
                         }
                     }
                     setLoaderVisible(false)

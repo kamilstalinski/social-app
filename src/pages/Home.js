@@ -1,50 +1,36 @@
 import { useState, useEffect } from "react";
 import LatestPosts from "../LatestPosts";
+import Loader from "../Loader";
 import axios from "axios";
 
 const Home = () => {
     const [postList, setPostList] = useState([]);
+    const [loaderVisible, setLoaderVisible] = useState(true);
 
     useEffect(() => {
         getPostData();
+        setLoaderVisible(false)
     }, [])
 
-    let axiosConfig = {
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-    };
-
     const getPostData = () => {
+        let axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        };
+
         axios.post('https://akademia108.pl/api/social-app/post/latest', axiosConfig)
             .then(res => {
-                let posts = res.data;
-                // console.log(posts);
-
-
-                let newPostList = [];
-                Object.keys(posts).forEach(post => {
-                    let newPost = posts[post];
-
-                    let newPostObj = {
-                        content: newPost.content,
-                        time: newPost.updated_at,
-                        user: newPost.user
-                    }
-
-                    newPostList.push(newPostObj)
-                })
-
-                setPostList(newPostList)
+                setPostList(res.data);
             })
     }
-    console.log(postList)
 
     return (
         <div className="Home">
-            <h1>Latest Posts:</h1>
+            {loaderVisible ? <Loader /> : null}
             <LatestPosts postList={postList} />
+            <button>Load More</button>
         </div>
     );
 }

@@ -1,0 +1,75 @@
+.LatestPosts {
+    margin-top: 50px;
+}
+
+.post-container {
+    max-width: 700px;
+    height: auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgb(65, 65, 65);
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 20px;
+    list-style: none;
+}
+
+.post-container .post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-container .post-header .post-header-avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+    box-shadow: 0 0 5px #331222;
+}
+
+.post-container .post-header .post-header-avatar .avatar-icon {
+    color: #331222;
+    font-size: 25px;
+}
+
+.post-container .post-header .post-header-info {
+    margin-left: 15px;
+}
+
+.post-container .post-header .post-header-info h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #331222;
+}
+
+.post-container .post-header .post-header-info h2 {
+    font-size: 14px;
+    font-weight: 300;
+    color: #949494;
+}
+
+.post-container .post-like {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.post-container .post-like .like-icon {
+    font-size: 25px;
+    color: rgb(228, 0, 0);
+}
+
+.post-container .post-like p {
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+
+
+
