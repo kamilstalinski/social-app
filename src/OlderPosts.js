@@ -2,8 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHeart } from '@fortawesome/free-solid-svg-icons';
 import './LatestPosts.css';
 
-const LatestPosts = (props) => {
-    let posts = props.postList.map(post => {
+
+const OlderPosts = (props) => {
+    let posts = props.olderPostList.map(post => {
 
         return (
             <li key={post.id} className="post-container">
@@ -30,9 +31,8 @@ const LatestPosts = (props) => {
             <ul className="post-list">
                 {posts}
             </ul>
-            {props.buttonVisible ? <button className='load-more-btn' onClick={props.handleButton}>Load More</button> : null}
         </div>
     );
 }
 
-export default LatestPosts;
+export default OlderPosts;

@@ -6,7 +6,7 @@
     max-width: 700px;
     height: auto;
     background-color: #fff;
-    box-shadow: 0 0 10px rgb(65, 65, 65);
+    box-shadow: 0 0 10px #949494;
     border-radius: 10px;
     margin: 20px auto;
     padding: 20px;
@@ -67,6 +67,19 @@
     margin-left: 5px;
     font-weight: bold;
     font-size: 14px;
+}
+
+.load-more-btn {
+    width: 200px;
+    padding: 20px 30px;
+    justify-self: center;
+    font-weight: bold;
+    background-color: #000;
+    border: none;
+    box-shadow: 0 0 5px #949494;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 
