@@ -1,5 +1,7 @@
 .LatestPosts {
     margin-top: 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 .post-container {
@@ -72,7 +74,8 @@
 .load-more-btn {
     width: 200px;
     padding: 20px 30px;
-    justify-self: center;
+    margin: 10px auto;
+    
     font-weight: bold;
     background-color: #000;
     border: none;
