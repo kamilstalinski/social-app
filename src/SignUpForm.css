@@ -81,7 +81,7 @@
 .login-error {
     position: absolute;
     top: 13px;
-    left: calc(50% - 118.49px);
+    left: calc(50% - 25%);
     font-size: 14px;
     color: rgb(202, 0, 0);
 }

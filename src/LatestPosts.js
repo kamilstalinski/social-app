@@ -1,10 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHeart } from '@fortawesome/free-solid-svg-icons';
+import ReactTimeAgo from 'react-time-ago'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
 import './LatestPosts.css';
 
 const LatestPosts = (props) => {
+
+
+
     let posts = props.postList.map(post => {
 
+        TimeAgo.addLocale(en)
         return (
             <li key={post.id} className="post-container">
                 <header className="post-header">
@@ -13,7 +20,7 @@ const LatestPosts = (props) => {
                     </div>
                     <div className="post-header-info">
                         <h1>{post.user.username}</h1>
-                        <h2>{post.created_at}</h2>
+                        <ReactTimeAgo date={post.created_at} locale='en-UK' timeStyle='round-minute' />
                     </div>
                 </header>
                 <p>{post.content}</p>
