@@ -32,32 +32,30 @@ const Home = () => {
     }
 
     const getOlderPostData = () => {
-        let axiosConfig = {
+        const axiosConfig = {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
         };
 
-        axios.post('https://akademia108.pl/api/social-app/post/older-then', axiosConfig)
+        axios.post('https://akademia108.pl/api/social-app/post/older-then', { 'date': '2021-05-31T10:12:07.000000Z' }, axiosConfig)
             .then(res => {
                 setOlderPostList(res.data);
-
             })
-            .catch((error) => {
-                console.error(error);
+            .catch(err => {
+                console.error(err);
             })
     }
 
     const handleButton = () => {
-        console.log('działa')
         getOlderPostData();
         setButtonVisible(false);
     }
 
 
     return (
-        <div className="Home">
+        <div className="Home" style={{ marginTop: '20px' }}>
             {loaderVisible ? <Loader /> : null}
             <LatestPosts postList={postList} handleButton={handleButton} buttonVisible={buttonVisible} />
             <OlderPosts olderPostList={olderPostList} />

@@ -12,7 +12,7 @@
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    height: 100px;
+    height: 10vh;
     padding: 0 50px;
     color: #fff;
 }
@@ -56,6 +56,14 @@
 
 .navbar-section ul a.log-in  {
     color: white;
+}
+
+.navbar-section ul button.log-in {
+    background-color: transparent;
+    color: white;
+    padding: 15px 25px;
+    color: #949494;
+    border: solid #949494 1px;
 }
 
 .navbar-section ul a.log-in:hover {

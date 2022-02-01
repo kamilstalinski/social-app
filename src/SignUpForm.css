@@ -1,4 +1,4 @@
-.sign-up-form {
+.sign-up-form, .login-form {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -10,22 +10,23 @@
     box-shadow: 0 3px 15px #000000;
     color: #fff;
     max-width: 800px;
-    padding: 10px 0;
+    padding: 30px 0;
 }
 
-.sign-up-form h1 {
+.sign-up-form h1, .login-form h1 {
     text-align: center;
-    margin: 35px 0;
+    margin: 0 0;
     font-weight: 500;
 }
 
-.sign-up-form form {
+
+.sign-up-form form, .login-form form {
     display: flex;
     flex-direction: column;
     padding: 0 50px;
 }
 
-.sign-up-form form input {
+.sign-up-form form input, .login-form form input {
     padding: 15px 20px;
     margin: 15px 0;
     font-size: 16px;
@@ -36,16 +37,11 @@
     border: solid 2px red;
 }
 
-.sign-up-form form .form-checkbox {
-    text-align: center;
-    margin: 10px 0;
-}
-
 .sign-up-form form .form-checkbox input {
     margin-right: 10px;
 }
 
-.sign-up-form form button {
+.sign-up-form form button, .login-form form button {
     width: 200px;
     padding: 20px 30px;
     margin: 0 auto;
@@ -62,14 +58,30 @@
     transition: all .15s;
 }   
 
-.sign-up-form form button:hover {
+.sign-up-form form button:hover, .login-form form button:hover {
     background-color: #949494;
     color: #000;
     border: #949494;
 
 }
 
+.login-form p {
+    text-align: center;
+}
+
+.sign-btn {
+    color: orange;
+}
+
 .errors {
+    font-size: 14px;
+    color: rgb(202, 0, 0);
+}
+
+.login-error {
+    position: absolute;
+    top: 13px;
+    left: calc(50% - 118.49px);
     font-size: 14px;
     color: rgb(202, 0, 0);
 }
