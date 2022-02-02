@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom';
 import './Navbar.css'
 
 const Navbar = (props) => {
+    let loggedIn = props.loggedIn;
+
 
     return (
         <div className="navbar-section">

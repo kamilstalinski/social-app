@@ -1,13 +1,15 @@
 import { useState } from "react/cjs/react.development";
-import { NavLink, } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import '../SignUpForm.css'
 import axios from "axios";
 
-const LogIn = () => {
+const LogIn = (props) => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('')
     const [messageIsVisible, setMessageIsVisible] = useState(false);
+
+    let navigate = useNavigate();
 
 
     const handleSubmit = (e) => {
@@ -50,8 +52,9 @@ const LogIn = () => {
                     localStorage.setItem('user', res.data.jwt_token);
                     setUserName('');
                     setPassword('');
+                    navigate('/');
                 }
-            })
+            });
     }
 
 
