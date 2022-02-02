@@ -4,7 +4,6 @@ import './Navbar.css'
 const Navbar = (props) => {
     let loggedIn = props.loggedIn;
 
-
     return (
         <div className="navbar-section">
             <div className="navbar-container">
@@ -14,7 +13,7 @@ const Navbar = (props) => {
                 <ul>
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="signup">Sign Up</NavLink>
-                    <NavLink className='log-in' to="login">Login</NavLink>
+                    {loggedIn ? <button className='log-in' to="login">Log Out</button> : <NavLink className='log-in' to="login">Login</NavLink>}
                 </ul>
             </div>
         </div>

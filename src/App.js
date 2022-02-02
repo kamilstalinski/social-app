@@ -9,17 +9,11 @@ import SignUp from './pages/SignUp';
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
-  let loggedInfo = localStorage.user;
-
   useEffect(() => {
-    if (loggedInfo) {
+    if (localStorage.user) {
       setLoggedIn(true);
-    } else if (loggedInfo === undefined) {
-      setLoggedIn(false);
     }
-  })
-
-  console.log(loggedIn)
+  }, [])
 
   return (
     <div className="App">
