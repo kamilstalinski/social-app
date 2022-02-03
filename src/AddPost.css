@@ -1,0 +1,25 @@
+.AddPost {
+    max-width: 700px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.AddPost form .post-input {
+    width: 100%;
+    height: 100px;
+    padding: 15px;
+    font-size: 16px;
+    font-family: 'Montserrat';
+}
+
+.AddPost form button {
+    padding: 15px 25px;
+    width: 100px;
+    background-color: #331212;
+    color: white;
+    font-size: 16px;
+    border: solid #331212 1px;
+    cursor: pointer;
+    transition: all .2s;
+}

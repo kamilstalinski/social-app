@@ -1,5 +1,5 @@
 import { useState } from "react/cjs/react.development";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import '../SignUpForm.css'
 import axios from "axios";
 
@@ -9,7 +9,7 @@ const LogIn = (props) => {
     const [message, setMessage] = useState('')
     const [messageIsVisible, setMessageIsVisible] = useState(false);
 
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
 
 
     const handleSubmit = (e) => {
@@ -32,13 +32,11 @@ const LogIn = (props) => {
                 console.log(res.status);
 
                 if (res.status === 201 && res.data.username) {
-                    console.log('zły uzytkownik')
                     setMessage(<p className="login-error" style={{ textAlign: 'center' }}>{res.data.username}</p>);
                     setMessageIsVisible(true);
                 }
 
                 if (res.status === 201 && res.data.password) {
-                    console.log('złe hasło')
                     setMessage(<p className="login-error" style={{ textAlign: 'center' }}>{res.data.password}</p>);
                     setMessageIsVisible(true);
                 }
@@ -49,10 +47,11 @@ const LogIn = (props) => {
                 }
 
                 if (res.data.error === false) {
-                    localStorage.setItem('user', res.data.jwt_token);
+                    localStorage.setItem('user', JSON.stringify(res.data));
+                    props.setCurrentUser(res.data);
                     setUserName('');
                     setPassword('');
-                    navigate('/');
+                    // navigate('/');
                 }
             });
     }
@@ -62,6 +61,7 @@ const LogIn = (props) => {
 
     return (
         <div className="login-form">
+            {props.currentUser && <Navigate to='/' />}
             {messageIsVisible ? message : null}
             <h1>Log In</h1>
             <form className='form' onSubmit={handleSubmit}>

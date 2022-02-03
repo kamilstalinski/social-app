@@ -20,7 +20,7 @@ const LatestPosts = (props) => {
                     </div>
                     <div className="post-header-info">
                         <h1>{post.user.username}</h1>
-                        <ReactTimeAgo className='date' date={post.created_at} locale='en-UK' timeStyle='round-minute' />
+                        <ReactTimeAgo className='date' date={Date.parse(post.created_at)} locale='en-UK' timeStyle='round-minute' />
                     </div>
                 </header>
                 <p>{post.content}</p>

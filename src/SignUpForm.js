@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios';
-
 import Loader from './Loader';
-
 import './SignUpForm.css';
 
 
-const SignUpForm = (props) => {
+const SignUpForm = () => {
+
 
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');

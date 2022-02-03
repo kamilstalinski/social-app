@@ -3,8 +3,9 @@ import LatestPosts from "../LatestPosts";
 import OlderPosts from "../OlderPosts";
 import Loader from "../Loader";
 import axios from "axios";
+import AddPost from "../AddPost";
 
-const Home = () => {
+const Home = (props) => {
     const [postList, setPostList] = useState([]);
     const [olderPostList, setOlderPostList] = useState([]);
     const [loaderVisible, setLoaderVisible] = useState(true);
@@ -57,6 +58,7 @@ const Home = () => {
     return (
         <div className="Home" style={{ marginTop: '20px' }}>
             {loaderVisible ? <Loader /> : null}
+            {props.currentUser && <AddPost currentUser={props.currentUser} />}
             <LatestPosts postList={postList} handleButton={handleButton} buttonVisible={buttonVisible} />
             <OlderPosts olderPostList={olderPostList} />
         </div>
