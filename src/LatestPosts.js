@@ -5,39 +5,38 @@ import ReactTimeAgo from 'react-time-ago'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 import './LatestPosts.css';
-import { useState } from 'react';
 
 const LatestPosts = (props) => {
+    let currentUser = props.currentUser;
 
+    const handleDelete = (id, username) => {
 
-
-    let posts = props.postList.map(post => {
-        let currentUser = props.currentUser;
-
-        const handleDelete = () => {
-            console.log('działa', post.id)
-
-            const headers = {
+        const headers = {
+            'headers': {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'Authorization': 'Bearer ' + currentUser.jwt_token
             }
-
-            const deletePost = id => {
-                props.setPostList(posts => {
-                    console.log(posts)
-                    let filteredPosts = posts.filter(post => post.id !== id)
-
-                    return filteredPosts
-                })
-            }
-
-            axios.post('https://akademia108.pl/api/social-app/post/delete', { "post_id": post.id }, headers)
-                .then(res => {
-                    console.log(res.data);
-                })
         }
 
+        const deletePost = id => {
+            props.setPostList(posts => {
+                let filteredPosts = posts.filter(post => post.id !== id);
+                return filteredPosts;
+            })
+        }
+
+        axios.post('https://akademia108.pl/api/social-app/post/delete', { "post_id": id }, headers)
+            .then(res => {
+                if (currentUser.username === username) {
+                    deletePost(id);
+                } else {
+                    console.log('Unauthorized')
+                }
+            })
+    }
+
+    let posts = props.postList.map(post => {
 
         TimeAgo.addLocale(en)
         return (
@@ -51,7 +50,7 @@ const LatestPosts = (props) => {
                         <ReactTimeAgo className='date' date={Date.parse(post.created_at)} locale='en-UK' timeStyle='round-minute' />
                     </div>
                 </header>
-                <FontAwesomeIcon onClick={handleDelete} icon={faTrashAlt} className='delete-icon'></FontAwesomeIcon>
+                <FontAwesomeIcon onClick={() => handleDelete(post.id, post.user.username)} icon={faTrashAlt} className='delete-icon'></FontAwesomeIcon>
                 <p>{post.content}</p>
                 <div className="post-like">
                     <FontAwesomeIcon icon={faHeart} className={'like-icon'}></FontAwesomeIcon>
