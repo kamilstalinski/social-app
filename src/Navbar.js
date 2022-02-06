@@ -4,15 +4,8 @@ import './Navbar.css'
 
 const Navbar = (props) => {
     let currentUser = props.currentUser;
-    console.log(currentUser)
 
     const handleLogOut = () => {
-
-        let data = {
-            'username': props.currentUser.username,
-            'id': props.currentUser.id
-        }
-
         let headers = {
             'headers': {
                 'Content-Type': 'application/json',
@@ -21,9 +14,9 @@ const Navbar = (props) => {
             }
         }
 
-        axios.post('https://akademia108.pl/api/social-app/user/logout', data, headers)
+        axios.post('https://akademia108.pl/api/social-app/user/logout', {}, headers)
             .then(res => {
-                console.log(res)
+                props.setCurrentUser(null);
             })
             .catch(err => {
                 console.log(err)
@@ -34,7 +27,7 @@ const Navbar = (props) => {
         <div className="navbar-section">
             <div className="navbar-container">
                 <div className="navbar-logo">
-                    <a href="">Connectify</a>
+                    <a href="/">Connectify</a>
                 </div>
                 <ul>
                     <NavLink to="/">Home</NavLink>

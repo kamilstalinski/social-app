@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHeart, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios'
 import ReactTimeAgo from 'react-time-ago'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
@@ -10,7 +11,6 @@ const LatestPosts = (props) => {
 
 
     let posts = props.postList.map(post => {
-
         TimeAgo.addLocale(en)
         return (
             <li key={post.id} className="post-container">
@@ -23,6 +23,7 @@ const LatestPosts = (props) => {
                         <ReactTimeAgo className='date' date={Date.parse(post.created_at)} locale='en-UK' timeStyle='round-minute' />
                     </div>
                 </header>
+                <FontAwesomeIcon icon={faTrashAlt} className='delete-icon'></FontAwesomeIcon>
                 <p>{post.content}</p>
                 <div className="post-like">
                     <FontAwesomeIcon icon={faHeart} className='like-icon'></FontAwesomeIcon>
@@ -37,7 +38,7 @@ const LatestPosts = (props) => {
             <ul className="post-list">
                 {posts}
             </ul>
-            {props.buttonVisible ? <button className='load-more-btn' onClick={props.handleButton}>Load More</button> : null}
+            <button className='load-more-btn' onClick={props.handleButton}>Load More</button>
         </div>
     );
 }

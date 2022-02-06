@@ -69,8 +69,9 @@
 }
 
 .navbar-section ul button.log-out:hover {
-    background-color: rgb(219, 143, 0);
+    background-color: rgb(189, 189, 189);
     border: solid #949494 1px;
+    color: #000;
 }
 
 .navbar-section ul a.log-in:hover {

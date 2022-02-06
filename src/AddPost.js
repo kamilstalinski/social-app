@@ -5,13 +5,10 @@ import './AddPost.css'
 const AddPost = (props) => {
     const [postData, setPostData] = useState('');
 
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        let postData = {
-            'username': 'adam',
-            'password': '1234'
-        }
 
         let axiosConfig = {
             'headers': {
@@ -21,13 +18,19 @@ const AddPost = (props) => {
             }
         };
 
-        axios.post('https://akademia108.pl/api/social-app/post/add', postData, axiosConfig)
+        axios.post('https://akademia108.pl/api/social-app/post/add', { 'content': postData }, axiosConfig)
             .then(res => {
-                console.log(res)
+                setPostData('');
+                axios.post('https://akademia108.pl/api/social-app/post/newer-then', { 'date': props.postList[0].created_at }, axiosConfig)
+                    .then(res => {
+                        props.setPostList(res.data.concat(props.postList));
+                    })
             })
             .catch(err => {
                 console.log(err)
-            })
+            });
+
+
     }
 
 

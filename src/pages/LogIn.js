@@ -1,5 +1,5 @@
 import { useState } from "react/cjs/react.development";
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import '../SignUpForm.css'
 import axios from "axios";
 
@@ -8,8 +8,6 @@ const LogIn = (props) => {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('')
     const [messageIsVisible, setMessageIsVisible] = useState(false);
-
-    // let navigate = useNavigate();
 
 
     const handleSubmit = (e) => {
@@ -29,7 +27,6 @@ const LogIn = (props) => {
 
         axios.post('https://akademia108.pl/api/social-app/user/login', loginData, headers)
             .then(res => {
-                console.log(res.status);
 
                 if (res.status === 201 && res.data.username) {
                     setMessage(<p className="login-error" style={{ textAlign: 'center' }}>{res.data.username}</p>);
