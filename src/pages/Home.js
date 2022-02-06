@@ -57,7 +57,7 @@ const Home = (props) => {
         <div className="Home" style={{ marginTop: '20px' }}>
             {loaderVisible ? <Loader /> : null}
             {props.currentUser && <AddPost currentUser={props.currentUser} postList={postList} setPostList={setPostList} />}
-            <LatestPosts postList={postList} setPostList={setPostList} handleButton={handleButton} buttonVisible={buttonVisible} />
+            <LatestPosts postList={postList} setPostList={setPostList} currentUser={props.currentUser} handleButton={handleButton} buttonVisible={buttonVisible} />
         </div>
     );
 }

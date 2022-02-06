@@ -63,6 +63,12 @@
 .post-container .post-like .like-icon {
     font-size: 25px;
     color: rgb(228, 0, 0);
+    cursor: pointer;
+}
+.post-container .post-like .unlike-icon {
+    font-size: 25px;
+    color: #949494;
+    cursor: pointer;
 }
 
 .post-container .post-like p {
