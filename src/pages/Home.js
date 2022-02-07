@@ -3,7 +3,7 @@ import LatestPosts from "../LatestPosts";
 import Loader from "../Loader";
 import axios from "axios";
 import AddPost from "../AddPost";
-import RecommendedFollowers from "../RecommendedFollowers";
+import Recommended from "../Recommended";
 
 const Home = (props) => {
     const [postList, setPostList] = useState([]);
@@ -57,7 +57,7 @@ const Home = (props) => {
     return (
         <div className="Home" style={{ marginTop: '20px' }}>
             {loaderVisible ? <Loader /> : null}
-            {props.currentUser && <RecommendedFollowers currentUser={props.currentUser} />}
+            {props.currentUser && <Recommended currentUser={props.currentUser} />}
             {props.currentUser && <AddPost currentUser={props.currentUser} postList={postList} setPostList={setPostList} />}
             <LatestPosts postList={postList} setPostList={setPostList} currentUser={props.currentUser} handleButton={handleButton} buttonVisible={buttonVisible} />
         </div>

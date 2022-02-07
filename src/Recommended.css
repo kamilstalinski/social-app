@@ -1,0 +1,55 @@
+.Recommended {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.Recommended h1 {
+    text-align: center;
+    background-color: #fff;
+    line-height: 2;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #949494;
+}
+
+.recommendation-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.recommendation {
+    text-align: center;
+    width: 180px;
+    height: auto;
+    background-color: #331222;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #331222;
+}
+
+.recommendation img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.recommendation h2 {
+    font-size: 20px;
+    margin: 5px 0;
+    color: #fff;
+}
+
+.recommendation button {
+    padding: 10px 20px;
+    margin-top: 5px;
+    font-size: 14px;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s all;
+}
+
+.recommendation button:hover {
+    background-color: orange;
+}
