@@ -5,9 +5,12 @@ import ReactTimeAgo from 'react-time-ago'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 import './LatestPosts.css';
+import { useState } from 'react';
 
 const LatestPosts = (props) => {
+
     let currentUser = props.currentUser;
+    const [loggedInUser, setLoggedInUser] = useState(true);
 
     const handleDelete = (id, username) => {
 
@@ -36,6 +39,8 @@ const LatestPosts = (props) => {
             })
     }
 
+
+
     let posts = props.postList.map(post => {
 
         TimeAgo.addLocale(en)
@@ -50,7 +55,7 @@ const LatestPosts = (props) => {
                         <ReactTimeAgo className='date' date={Date.parse(post.created_at)} locale='en-UK' timeStyle='round-minute' />
                     </div>
                 </header>
-                <FontAwesomeIcon onClick={() => handleDelete(post.id, post.user.username)} icon={faTrashAlt} className='delete-icon'></FontAwesomeIcon>
+                {!loggedInUser ? null : <FontAwesomeIcon onClick={() => handleDelete(post.id, post.user.username)} icon={faTrashAlt} className='delete-icon'></FontAwesomeIcon>}
                 <p>{post.content}</p>
                 <div className="post-like">
                     <FontAwesomeIcon icon={faHeart} className={'like-icon'}></FontAwesomeIcon>

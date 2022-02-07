@@ -11,9 +11,13 @@ const Home = (props) => {
     const [buttonVisible, setButtonVisible] = useState(true);
 
     useEffect(() => {
+        triggerFunc();
+    }, [])
+
+    const triggerFunc = () => {
         getPostData();
         setButtonVisible(false);
-    }, [])
+    }
 
     const getPostData = () => {
         let axiosConfig = {

@@ -1,9 +1,11 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import './Recommended.css'
 
 const Recommended = (props) => {
     let currentUser = props.currentUser;
+    const [recommendations, setRecommendations] = useState();
+
 
     useEffect(() => {
         const headers = {
@@ -14,33 +16,32 @@ const Recommended = (props) => {
             }
         }
 
-        axios.post('https://akademia108.pl/api/social-app/follows/recommendations', headers)
+        axios.post('https://akademia108.pl/api/social-app/follows/recommendations', {}, headers)
             .then(res => {
-                console.log(res)
+                let recommendations = res.data.map(user => {
+                    return (
+
+                        <div key={user.id} className="recommendation">
+                            <img src={user.avatar_url} alt="avatar" />
+                            <h2>{user.username}</h2>
+                            <button>Follow</button>
+                        </div>
+
+                    )
+                })
+                setRecommendations(recommendations)
             })
     }, [])
+
+
 
     return (
         <div className="Recommended">
             <h1>People you may know</h1>
             <div className="recommendation-container">
-                <div className="recommendation">
-                    <img src="https://akademia108.pl/api/social-app/img/avatar1.png" alt="avatar" />
-                    <h2>Username</h2>
-                    <button>Follow</button>
-                </div>
-                <div className="recommendation">
-                    <img src="https://akademia108.pl/api/social-app/img/avatar1.png" alt="avatar" />
-                    <h2>Username</h2>
-                    <button>Follow</button>
-                </div>
-                <div className="recommendation">
-                    <img src="https://akademia108.pl/api/social-app/img/avatar1.png" alt="avatar" />
-                    <h2>Username</h2>
-                    <button>Follow</button>
-                </div>
+                {recommendations}
             </div>
-        </div>
+        </div >
     );
 }
 
