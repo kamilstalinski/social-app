@@ -6,21 +6,25 @@ import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 import './LatestPosts.css';
 import { useState } from 'react';
+import Like from './Like';
 
 const LatestPosts = (props) => {
 
     let currentUser = props.currentUser;
+
     const [loggedInUser, setLoggedInUser] = useState(true);
+    const [isLiked, setIsLiked] = useState()
+
+
+    const headers = {
+        'headers': {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + currentUser.jwt_token
+        }
+    }
 
     const handleDelete = (id, username) => {
-
-        const headers = {
-            'headers': {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'Bearer ' + currentUser.jwt_token
-            }
-        }
 
         const deletePost = id => {
             props.setPostList(posts => {
@@ -39,10 +43,15 @@ const LatestPosts = (props) => {
             })
     }
 
-
+    const handleLike = post => {
+        axios.post(!isLiked ? 'https://akademia108.pl/api/social-app/post/like' : 'https://akademia108.pl/api/social-app/post/dislike', { 'post_id': post.id }, headers)
+            .then(res => {
+                setIsLiked(res.data.liked);
+                console.log(res.data.message)
+            })
+    }
 
     let posts = props.postList.map(post => {
-
         TimeAgo.addLocale(en)
         return (
             <li key={post.id} className="post-container">
@@ -57,10 +66,7 @@ const LatestPosts = (props) => {
                 </header>
                 {!loggedInUser ? null : <FontAwesomeIcon onClick={() => handleDelete(post.id, post.user.username)} icon={faTrashAlt} className='delete-icon'></FontAwesomeIcon>}
                 <p>{post.content}</p>
-                <div className="post-like">
-                    <FontAwesomeIcon icon={faHeart} className={'like-icon'}></FontAwesomeIcon>
-                    <p>{post.likes.length}</p>
-                </div>
+                <Like post={post} isLiked={isLiked} handleLike={handleLike} currentUser={currentUser} />
             </li>
         )
     })
